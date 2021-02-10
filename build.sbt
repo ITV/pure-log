@@ -78,8 +78,8 @@ scmInfo := Some(
   )
 )
 
-releaseCrossBuild := true
-crossScalaVersions := Seq("2.11.12", "2.12.6")
+//releaseCrossBuild := true
+//crossScalaVersions := Seq("2.11.12", "2.12.6")
 
 useGpg := false
 pgpSecretRing := file("local.secring.gpg")
