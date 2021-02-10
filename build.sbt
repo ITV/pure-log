@@ -64,7 +64,7 @@ credentials ++= (for {
   password <- sys.env.get("SONATYPE_PASSWORD")
 } yield Credentials("Sonatype Nexus Repository Manager", "oss.sonatype.org", username, password)).toSeq
 
-pomIncludeRepository := { _ => false }
+//pomIncludeRepository := { _ => false }
 publishMavenStyle := true
 
 licenses := Seq("Apache-2.0" -> url("https://opensource.org/licenses/Apache-2.0"))
