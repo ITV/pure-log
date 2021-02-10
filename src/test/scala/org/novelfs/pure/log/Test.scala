@@ -25,7 +25,7 @@ class Test extends FlatSpec with Matchers {
       override def toMdc(captain: Captain): Map[String, String] = Map("firstName" -> captain.firstName, "lastName" -> captain.lastName)
     }
 
-    Logger.log[ReaderT[IO, Captain, ?]](LogLevel.Info)("Hello World!")
+    Logger.log[ReaderT[IO, Captain, *]](LogLevel.Info)("Hello World!")
       .run(Captain("James", "Kirk"))
       .unsafeRunSync()
   }

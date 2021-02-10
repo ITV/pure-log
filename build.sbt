@@ -1,30 +1,28 @@
 import ReleaseTransformations._
 
 name := "pure-log"
-scalaVersion := "2.12.7"
+scalaVersion := "2.13.4"
 organization := "org.novelfs"
 
-val catsEffectVersion = "1.0.0"
+val catsEffectVersion = "2.3.1"
 val kafkaSerializationV = "0.3.2"
-val scalatestVersion = "3.0.4"
+val scalatestVersion = "3.0.9"
 val typesafeConfigVersion = "1.3.1"
 
 libraryDependencies ++= Seq(
-  "ch.qos.logback"  % "logback-classic"               % "1.2.3"
-  , "com.github.mpilquist" %% "simulacrum" % "0.14.0"
+  "ch.qos.logback"  % "logback-classic" % "1.2.3"
+  , "org.typelevel" %% "simulacrum" % "1.0.1"
   , "com.typesafe" % "config" % typesafeConfigVersion
-  , "org.log4s" %% "log4s" % "1.6.1"
+  , "org.log4s" %% "log4s" % "1.9.0"
   , "org.scalactic" %% "scalactic" % scalatestVersion
   , "org.scalatest" %% "scalatest" % scalatestVersion % Test
-  , "org.scalamock" %% "scalamock" % "4.1.0" % Test
-  , "org.scalacheck" %% "scalacheck" % "1.13.4" % Test
+  , "org.scalamock" %% "scalamock" % "4.4.0" % Test
+  , "org.scalacheck" %% "scalacheck" % "1.14.3" % Test
   , "org.typelevel" %% "cats-effect" % catsEffectVersion
-  , "org.typelevel" %% "cats-mtl-core" % "0.4.0"
-  , "net.manub" %% "scalatest-embedded-kafka" % "2.0.0" % Test
+  , "org.typelevel" %% "cats-mtl-core" % "0.7.1"
 )
 
-addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.4")
-addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
+addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.11.3" cross CrossVersion.full)
 
 scalacOptions ++= Seq(
   "-deprecation",                      // Emit warning and location for usages of deprecated APIs.
@@ -38,15 +36,12 @@ scalacOptions ++= Seq(
   "-unchecked",                        // Enable additional warnings where generated code depends on assumptions.
   "-Xcheckinit",                       // Wrap field accessors to throw an exception on uninitialized access.
   "-Xfatal-warnings",                  // Fail the compilation if there are any warnings.
-  "-Xfuture",                          // Turn on future language features.
   "-Xlint:adapted-args",               // Warn if an argument list is modified to match the receiver.
-  "-Xlint:by-name-right-associative",  // By-name parameter of right associative operator.
   "-Xlint:delayedinit-select",         // Selecting member of DelayedInit.
   "-Xlint:doc-detached",               // A Scaladoc comment appears to be detached from its element.
   "-Xlint:inaccessible",               // Warn about inaccessible types in method signatures.
   "-Xlint:infer-any",                  // Warn when a type argument is inferred to be `Any`.
   "-Xlint:missing-interpolator",       // A string literal appears to be missing an interpolator id.
-  "-Xlint:nullary-override",           // Warn when non-nullary `def f()' overrides nullary `def f'.
   "-Xlint:nullary-unit",               // Warn when nullary methods return Unit.
   "-Xlint:option-implicit",            // Option.apply used implicit view.
   "-Xlint:package-object-classes",     // Class or object defined in package object.
@@ -54,16 +49,10 @@ scalacOptions ++= Seq(
   "-Xlint:private-shadow",             // A private field (or class parameter) shadows a superclass field.
   "-Xlint:stars-align",                // Pattern sequence wildcard must align with sequence component.
   "-Xlint:type-parameter-shadow",      // A local type parameter shadows a type already in scope.
-  "-Xlint:unsound-match",              // Pattern match may not be typesafe.
-  "-Yno-adapted-args",                 // Do not adapt an argument list (either by inserting () or creating a tuple) to match the receiver.
-  "-Ypartial-unification",             // Enable partial unification in type constructor inference
   "-Ywarn-dead-code",                  // Warn when dead code is identified.
-  "-Ywarn-inaccessible",               // Warn about inaccessible types in method signatures.
-  "-Ywarn-infer-any",                  // Warn when a type argument is inferred to be `Any`.
-  "-Ywarn-nullary-override",           // Warn when non-nullary `def f()' overrides nullary `def f'.
-  "-Ywarn-nullary-unit",               // Warn when nullary methods return Unit.
   "-Ywarn-numeric-widen",              // Warn when numerics are widened.
-  "-Ywarn-value-discard"               // Warn when non-Unit expression results are unused.
+  "-Ywarn-value-discard",              // Warn when non-Unit expression results are unused.
+  "-Ymacro-annotations"                // Enable macros (for simulacrum)
 )
 
 scalacOptions in (Compile, console) --= Seq("-Ywarn-unused:imports", "-Xfatal-warnings")

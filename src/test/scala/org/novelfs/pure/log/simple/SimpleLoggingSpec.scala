@@ -3,12 +3,12 @@ package org.novelfs.pure.log.simple
 import cats.effect.IO
 import cats.effect.concurrent.MVar
 import org.log4s.{Logger => Log4sLogger}
-import org.novelfs.pure.log.{LogLevel, ApplicativeLogger}
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.novelfs.pure.log.{ApplicativeLogger, LogLevel}
 import org.scalatest.{FlatSpec, Matchers}
+import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
 import org.slf4j.{Marker, Logger => Slf4jLogger}
 
-class SimpleLoggingSpec extends FlatSpec with Matchers with GeneratorDrivenPropertyChecks {
+class SimpleLoggingSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChecks {
 
   implicit val contextSwitch = IO.contextShift(scala.concurrent.ExecutionContext.global)
   implicit val concurrentEffect = IO.ioConcurrentEffect
